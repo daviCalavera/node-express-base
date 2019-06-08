@@ -1,7 +1,7 @@
 import http from 'http';
 import assert from 'assert';
 
-import '../src/app';
+import '../src/server/app';
 
 describe('Load API server', () => {
 

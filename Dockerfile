@@ -1,8 +1,6 @@
-#
-# CREATE BUILDER IMAGE
-#
-
-FROM mhart/alpine-node:8 as Builder
+##################################################
+# PROJECT BUILDER IMAGE
+FROM node:10-alpine as Builder
 
 ARG NODE_ENV=production
 ARG APP_SOURCE=/tmp/app
@@ -21,9 +19,7 @@ WORKDIR ${APP_SOURCE}
 ADD . ${APP_SOURCE}
 
 # Install app deps:
-RUN NODE_ENV=development npm install
-# If you are building your code for production
-# RUN npm install --only=production
+RUN NODE_ENV=development npm ci
 
 # Running tests:
 RUN npm run test
@@ -32,11 +28,9 @@ RUN npm run test
 RUN npm run build
 
 
-#
-# CREATE FINAL IMAGE
-#
-
-FROM mhart/alpine-node:8
+##################################################
+# DEPLOYMENT IMAGE
+FROM node:10-alpine
 
 # Install Alpine deps:
 RUN apk --no-cache add ca-certificates
