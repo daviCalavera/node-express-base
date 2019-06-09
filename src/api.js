@@ -7,13 +7,10 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dnscache from 'dnscache';
 import express from 'express';
-import fs from 'fs';
 import favicon from 'serve-favicon';
 import path from 'path';
 
 import routes from './routes';
-import { log } from './modules/logger';
-import packageJSON from '../package.json';
 
 /**
   * Initialize Server

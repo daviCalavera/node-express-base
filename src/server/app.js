@@ -78,21 +78,21 @@ api.set('address', config.base_url);
 
 server.listen(port, () => {
 	// establish connection to mongodb
-  /*
+
   mongoose.Promise = global.Promise;
-	mongoose.connect(config.db.uri);
+	mongoose.connect(config.db.uri, { useNewUrlParser: true });
 
 	const db = mongoose.connection;
 
 	db.on('error', err => {
 		log.error(err);
-		process.exit(1);
+		//process.exit(1);
 	});
 
 	db.once('open', () => {
-
+    log.info('DB Started!');
   });
-  */
+
   log.info(`Server is listening on port ${config.port}`);
 });
 

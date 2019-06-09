@@ -16,7 +16,7 @@
 		"version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
 	},
 	"engines": {
-		"node": "8.x"
+		"node": "10.x"
 	},
 	"repository": {
 		"type": "git",
