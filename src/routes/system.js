@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { log } from '../modules/logger';
+import apiHealthcheck from './middlewares/apiHealthcheck';
 
 const router = express.Router();
 
@@ -44,5 +45,7 @@ router.get('/ping', (req, res) => {
     ok: true
   });
 });
+
+router.get('/uptime', apiHealthcheck);
 
 export default router;

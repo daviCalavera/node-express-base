@@ -53,6 +53,7 @@
 		"cors": "^2.8.5",
 		"dnscache": "^1.0.2",
 		"express": "^4.17.1",
+		"express-healthcheck": "^0.1.0",
 		"mongoose": "^5.5.14",
 		"mongoose-string-query": "^0.2.7",
 		"mongoose-timestamp": "^0.6.0",
@@ -72,7 +73,7 @@
 		"eslint-plugin-node": "^9.1.0",
 		"eslint-plugin-promise": "^4.1.1",
 		"eslint-plugin-standard": "^4.0.0",
-		"husky": "^2.4.0",
+		"husky": "^2.4.1",
 		"lint-staged": "^8.2.0",
 		"mocha": "^6.1.4",
 		"nodemon": "^1.19.1"
