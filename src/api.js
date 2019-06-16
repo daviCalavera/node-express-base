@@ -11,6 +11,7 @@ import favicon from 'serve-favicon';
 import path from 'path';
 
 import routes from './routes';
+import * as errors from './modules/errors';
 
 /**
   * Initialize Server
@@ -42,6 +43,8 @@ api.use((req, res, next) => {
 });
 
 routes(api);
+
+api.use(errors.logErrMiddleware);
 
 // catch 404 and forward to error handler
 api.use((req, res, next) => {

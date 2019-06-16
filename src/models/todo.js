@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const mongooseStringQuery = require('mongoose-string-query');
-const timestamps = require('mongoose-timestamp');
+import mongoose from 'mongoose';
+import mongooseStringQuery from 'mongoose-string-query';
+import timestamps from 'mongoose-timestamp';
 
 const TodoSchema = new mongoose.Schema(
 	{
@@ -23,4 +23,4 @@ TodoSchema.plugin(timestamps);
 TodoSchema.plugin(mongooseStringQuery);
 
 const Todo = mongoose.model('Todo', TodoSchema);
-module.exports = Todo;
+export default Todo;
