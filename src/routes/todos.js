@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { log } from '../modules/logger';
+import { todoReqValidator } from '../modules/reqValidators';
 import TodoService from '../services/todoService';
 
 const router = express.Router();
@@ -24,6 +24,24 @@ router.get('/', async (req, res, next) => {
 
     return next(err);
   }
+});
+
+
+router.post('/',
+todoReqValidator,
+async (req, res, next) => {
+
+  const data = req.body;
+});
+
+
+router.get('/:id', async (req, res, next) => {
+
+});
+
+
+router.put('/:id', async (req, res, next) => {
+
 });
 
 export default router;

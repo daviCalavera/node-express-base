@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { log } from '../modules/logger';
-import apiHealthcheck from './middlewares/apiHealthcheck';
+import apiHealthcheck from '../modules/apiHealthcheck';
 
 const router = express.Router();
 

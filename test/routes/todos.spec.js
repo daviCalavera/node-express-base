@@ -59,4 +59,29 @@ describe('[GET] /todos', function() {
       done();
     });
   });
+
+})
+
+describe('[POST] /todos', function() {
+
+  it.only('should reject an empty body', (done) => {
+
+    chai.request(server)
+    .post('/todos')
+    .send({
+    })
+    .end((err,res) => {
+      if (err) throw err;
+
+      res.should.have.status(422);
+      res.should.have.property('unprocessableEntity').equal(true);
+      res.should.have.property('ok').equal(false);
+      res.should.have.property('clientError').equal(true);
+      res.should.be.json;
+      res.body.should.have.property('err').to.be.an('object')
+      .to.have.all.keys('errorCode', 'message', 'name', 'statusCode');
+      done();
+    });
+  });
+
 })

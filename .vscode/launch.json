@@ -15,10 +15,11 @@
         "--require",
         "babel-polyfill",
         "--timeout",
-        "999999",
+        "99999",
         "--colors",
+        "--recursive",
         "--exit",
-        "${workspaceFolder}/test/**/*.spec.js"
+        "${workspaceFolder}/test"
       ],
       "env": { "NODE_ENV": "test"},
       "internalConsoleOptions": "openOnSessionStart"

@@ -1,4 +1,4 @@
-import config from '../../../config/server';
+import config from '../../config/server';
 
 class Passport {
   constructor() {
