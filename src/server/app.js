@@ -80,13 +80,24 @@ server.listen(port, () => {
 	// establish connection to mongodb
 
   mongoose.Promise = global.Promise;
-	mongoose.connect(config.db.uri, { useNewUrlParser: true });
+	mongoose.connect(config.db.uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
 	const db = mongoose.connection;
 
 	db.on('error', err => {
-		log.error(err);
-		//process.exit(1);
+
+    log.error({
+      type: err.name,
+      message: err.message,
+      stack: err.stack
+    });
+
+    if (process.env.NODE_ENV !== 'test') {
+      process.exit(1);
+    }
 	});
 
 	db.once('open', () => {

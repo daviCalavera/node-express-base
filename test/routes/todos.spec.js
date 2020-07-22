@@ -64,7 +64,11 @@ describe('[GET] /todos', function() {
 
 describe('[POST] /todos', function() {
 
-  it.only('should reject an empty body', (done) => {
+  afterEach(() => {
+    sinon.restore();
+  });
+
+  it('should reject an empty body', (done) => {
 
     chai.request(server)
     .post('/todos')
@@ -79,7 +83,76 @@ describe('[POST] /todos', function() {
       res.should.have.property('clientError').equal(true);
       res.should.be.json;
       res.body.should.have.property('err').to.be.an('object')
-      .to.have.all.keys('errorCode', 'message', 'name', 'statusCode');
+      .to.have.all.keys('code', 'dtls', 'msg', 'type');
+      done();
+    });
+  });
+
+  it('should reject when send an invalid "status"', (done) => {
+
+    chai.request(server)
+    .post('/todos')
+    .send({
+      task: 'Testing todo POST',
+      status: 'invalid-status'
+    })
+    .end((err,res) => {
+      if (err) throw err;
+
+      res.should.have.status(422);
+      res.should.have.property('unprocessableEntity').equal(true);
+      res.should.have.property('ok').equal(false);
+      res.should.have.property('clientError').equal(true);
+      res.should.be.json;
+      res.body.should.have.property('err').to.be.an('object')
+      .to.have.all.keys('code', 'dtls', 'msg', 'type');
+
+      res.body.err.code.should.be.a('string').equal('001');
+      res.body.err.type.should.be.a('string').equal('VALIDATION_EXCEPTION');
+      res.body.err.msg.should.be.a('string');
+      res.body.err.dtls.should.be.an('array').to.have.length.above(0);
+      res.body.err.dtls[0].should.be.an('object')
+      .to.have.all.keys('location', 'msg', 'param', 'value');
+      res.body.err.dtls[0].param.should.equal('status');
+
+      done();
+    });
+  });
+
+  it('should save a valid todo item with default status', (done) => {
+    const SUT = {
+      task: 'Create save todo unit test'
+    };
+
+    sinon.replace(todoServiceMock, 'createTODO', sinon.fake(async (task, status) => {
+      const data = {
+        task,
+        status
+      };
+      const model = new Todo(data);
+
+      return Promise.resolve(model);
+    }));
+
+    chai.request(server)
+    .post('/todos')
+    .send(SUT)
+    .end((err,res) => {
+      if (err) throw err;
+
+      res.should.have.status(201);
+      res.should.have.property('ok').equal(true);
+      res.should.have.property('created').equal(true);
+      res.should.be.json;
+      res.body.should.have.property('success').equal(true);
+      res.body.should.have.property('todo')
+        .to.be.an('object');
+      res.body.todo.should.have.property('_id');
+      res.body.todo.should.have.property('task')
+        .equal('Create save todo unit test');
+      res.body.todo.should.have.property('status')
+        .equal('pending');
+
       done();
     });
   });

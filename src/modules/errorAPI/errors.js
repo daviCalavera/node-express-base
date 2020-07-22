@@ -13,23 +13,28 @@
    * @description Creates an instance of CustomError.
    * @param {string} [message] error message.
    * @param {string} [code] custom error code.
+   * @param {string} [exceptionType] custom error exception type.
    * @param {*} [details] error details
    * @param {number} [statusCode] custom HTTP Status code.
    * @param {string} [name] custom error class name.
    * @memberof APIError
    */
-  constructor(message, code, details, statusCode, name) {
-    super(message, code, details, statusCode, name);
+  constructor(message, code, exceptionType, details, statusCode, name) {
+    super(message, code, exceptionType, details, statusCode, name);
 
     Error.captureStackTrace(this, this.constructor);
 
     this.name = name || 'APIError';
     this.statusCode = statusCode || 400;
-    this.code = code || this.statusCode;
+    this.code = code || `HTTP-${this.statusCode}`;
     this.message = message || `Error - Code: [${this.code}]`;
 
     if (details) {
       this.details = details;
+    }
+
+    if (exceptionType) {
+      this.type = exceptionType;
     }
 
   }
@@ -42,12 +47,14 @@
  *
  * @param {string} message error message
  * @param {string} errorCode error code to show
+ * @param {string} exceptionType type error exception
  * @param {*} details aditional message data
  */
-export const unprocessableEntity = (message, errorCode, details) => {
+export const unprocessableEntity = (message, errorCode, exceptionType, details) => {
 
   return new APIError(message || 'Unprocessable Entity',
-  errorCode || 422,
+  errorCode || null,
+  exceptionType || null,
   details,
   422,
   'UnprocessableEntityError');

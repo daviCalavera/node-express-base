@@ -1,6 +1,6 @@
 ##################################################
 # PROJECT BUILDER IMAGE
-FROM node:10-alpine as Builder
+FROM node:12-alpine as Builder
 
 ARG NODE_ENV=production
 ARG APP_SOURCE=/tmp/app
@@ -30,7 +30,7 @@ RUN npm run build
 
 ##################################################
 # DEPLOYMENT IMAGE
-FROM node:10-alpine
+FROM node:12-alpine
 
 # Install Alpine deps:
 RUN apk --no-cache add ca-certificates
