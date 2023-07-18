@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+ api:
+  build:
+   context: .
+   dockerfile: dev.Dockerfile
+  image: node-express-base
+  container_name: node-express-base
+  ports:
+   - 3000:3000
+   - 9229:9229
+  expose:
+    - "3000"
+  env_file:
+      - .env
+  restart: unless-stopped
+  volumes:
+   - .:/app
+  command:
+   - "npm"
+   - "run"
+   - "start"
