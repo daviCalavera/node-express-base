@@ -43,3 +43,6 @@ jspm_packages
 # Node.js
 node_modules
 
+# Env files
+.env
+.env.*

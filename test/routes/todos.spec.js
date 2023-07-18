@@ -112,8 +112,8 @@ describe('[POST] /todos', function() {
       res.body.err.msg.should.be.a('string');
       res.body.err.dtls.should.be.an('array').to.have.length.above(0);
       res.body.err.dtls[0].should.be.an('object')
-      .to.have.all.keys('location', 'msg', 'param', 'value');
-      res.body.err.dtls[0].param.should.equal('status');
+      .to.have.all.keys('location', 'msg', 'path', 'type', 'value');
+      res.body.err.dtls[0].path.should.equal('status');
 
       done();
     });

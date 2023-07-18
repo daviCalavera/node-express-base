@@ -16,7 +16,7 @@
 		"version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
 	},
 	"engines": {
-		"node": "10.x"
+		"node": "14.x"
 	},
 	"repository": {
 		"type": "git",
@@ -47,19 +47,19 @@
 		]
 	},
 	"dependencies": {
-		"body-parser": "^1.20.1",
+		"body-parser": "^1.20.2",
 		"compression": "^1.7.4",
 		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
 		"dnscache": "^1.0.2",
-		"express": "^4.18.1",
+		"express": "^4.18.2",
 		"express-healthcheck": "^0.1.0",
-		"express-validator": "^6.14.2",
-		"mongoose": "^6.6.5",
+		"express-validator": "^7.0.1",
+		"mongoose": "^7.3.4",
 		"mongoose-string-query": "^0.2.7",
 		"mongoose-timestamp": "^0.6.0",
 		"serve-favicon": "^2.5.0",
-		"winston": "^3.8.2"
+		"winston": "^3.10.0"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
@@ -67,20 +67,20 @@
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
 		"babel-register": "^6.26.0",
-		"chai": "^4.3.6",
+		"chai": "^4.3.7",
 		"chai-as-promised": "^7.1.1",
-		"chai-http": "^4.3.0",
-		"conventional-changelog-cli": "^2.2.2",
-		"eslint": "^8.24.0",
-		"eslint-config-standard": "^17.0.0",
-		"eslint-plugin-import": "^2.26.0",
+		"chai-http": "^4.4.0",
+		"conventional-changelog-cli": "^3.0.0",
+		"eslint": "^8.45.0",
+		"eslint-config-standard": "^17.1.0",
+		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-promise": "^6.0.1",
+		"eslint-plugin-promise": "^6.1.1",
 		"eslint-plugin-standard": "^4.1.0",
-		"husky": "^8.0.1",
-		"lint-staged": "^13.0.3",
-		"mocha": "^10.0.0",
-		"nodemon": "^2.0.20",
-		"sinon": "^14.0.1"
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.3",
+		"mocha": "^10.2.0",
+		"nodemon": "^3.0.1",
+		"sinon": "^15.2.0"
 	}
 }
